@@ -12,11 +12,12 @@ async function sendNotification(req, res) {
       notification: {
         title: "WM notification",
         body: "New version available!",
-        icon: "images/logo-small.png",
+        icon: "http://localhost:3000/images/logo-small.png",
         vibrate: [100, 50, 100],
         data: {
           dateOfArrival: Date.now(),
           primaryKey: 1,
+          url: "http://localhost:5000",
         },
         actions: [
           {
