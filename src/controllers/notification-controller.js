@@ -10,14 +10,14 @@ async function sendNotification(req, res) {
     // sample notification payload
     const notificationPayload = {
       notification: {
-        title: "WM notification",
-        body: "New version available!",
-        icon: "http://localhost:3000/images/logo-small.png",
+        title: "Wavemaker notification",
+        body: "This is a test notification!",
+        icon: "https://xenodochial-nightingale-ed8ef6.netlify.app/ng-bundle/assets/icons/icon-72x72.png",
         vibrate: [100, 50, 100],
         data: {
           dateOfArrival: Date.now(),
-          primaryKey: 1,
-          url: "http://localhost:5000",
+          primaryKey: 1 + Math.floor(10000 * Math.random()),
+          url: "https://xenodochial-nightingale-ed8ef6.netlify.app",
         },
         actions: [
           {
