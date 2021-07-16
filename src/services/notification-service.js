@@ -5,8 +5,8 @@ const constants = require("../util/constants");
 
 const vapidKeys = {
   publicKey:
-    "BHyoUBN7NtNslQsqHB39-GYg2U5dM0bQXo-_h-sHuPibPkdxUXKWGyruNPHGihCuroz5rLM9_vPiySAtI5d7gyA",
-  privateKey: "B6-f-PPSQsfeeLe4ak559udMuogUWJoBRNRMyoKXOvc",
+    "BBFn_uPDK0L4hc9Lmk1e4yZv4LA2Qi1mjXtGKSOup_g0UMfxRoQgZZFH0riGveUvhBftu_YkshRxgfzKZWEW3BE",
+  privateKey: "3FoX78eSBP271og76tlScreuDigIaGKMzTKvzwpZRGA",
 };
 
 webpush.setVapidDetails(
@@ -18,7 +18,7 @@ webpush.setVapidDetails(
 function saveVapId(subscription, req) {
   // fs.writeFileSync(constants.FILE_NAME, JSON.stringify(subscription));
   console.log(`Writing subscription: ${JSON.stringify(subscription)}`);
-  req.app.set(constants.FILE_NAME, JSON.stringify(subscription))
+  req.app.set(constants.FILE_NAME, JSON.stringify(subscription));
 }
 
 async function sendNotification(payload, req) {
