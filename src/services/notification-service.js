@@ -15,12 +15,16 @@ webpush.setVapidDetails(
   vapidKeys.privateKey
 );
 
-function saveVapId(subscription) {
-  fs.writeFileSync(constants.FILE_NAME, JSON.stringify(subscription));
+function saveVapId(subscription, req) {
+  // fs.writeFileSync(constants.FILE_NAME, JSON.stringify(subscription));
+  console.log(`Writing subscription: ${JSON.stringify(subscription)}`);
+  req.app.set(constants.FILE_NAME, JSON.stringify(subscription))
 }
 
-async function sendNotification(payload) {
-  const subscription = JSON.parse(fs.readFileSync(constants.FILE_NAME));
+async function sendNotification(payload, req) {
+  // const subscription = JSON.parse(fs.readFileSync(constants.FILE_NAME));
+  const subscription = JSON.parse(req.app.get(constants.FILE_NAME));
+  console.log(`Got subscription: ${JSON.stringify(subscription)}`);
   await webpush.sendNotification(subscription, JSON.stringify(payload));
   console.log(`Notification send for ${JSON.stringify(subscription)}`);
 }

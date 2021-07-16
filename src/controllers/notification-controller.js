@@ -1,7 +1,7 @@
 const notificationSevice = require("../services/notification-service");
 
 function register(req, res) {
-  notificationSevice.saveVapId(req.body);
+  notificationSevice.saveVapId(req.body, req);
   res.sendStatus(200);
 }
 
@@ -27,7 +27,7 @@ async function sendNotification(req, res) {
         ],
       },
     };
-    await notificationSevice.sendNotification(notificationPayload);
+    await notificationSevice.sendNotification(notificationPayload, req);
     res.status(200).json(notificationPayload);
   } catch (e) {
     res.sendStatus(500);
