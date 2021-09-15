@@ -11,23 +11,15 @@ async function sendNotification(req, res) {
     const notificationPayload = {
       notification: {
         title: "Wavemaker notification",
-        body: "This is a test notification!",
         icon: "https://xenodochial-nightingale-ed8ef6.netlify.app/ng-bundle/assets/icons/icon-72x72.png",
-        vibrate: [100, 50, 100],
         data: {
-          dateOfArrival: Date.now(),
-          primaryKey: 1 + Math.floor(10000 * Math.random()),
-          url: "https://xenodochial-nightingale-ed8ef6.netlify.app",
+          "onActionClick": {
+            "default": { "operation": "openWindow", "url": "https://xenodochial-nightingale-ed8ef6.netlify.app" }
+          }
         },
-        actions: [
-          {
-            action: "Install",
-            title: "Go to play store",
-          },
-        ],
       },
     };
-    await notificationSevice.sendNotification(notificationPayload, req);
+    await notificationSevice.sendNotification(req.body || notificationPayload, req);
     res.status(200).json(notificationPayload);
   } catch (e) {
     res.sendStatus(500);
