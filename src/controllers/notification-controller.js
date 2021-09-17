@@ -8,19 +8,15 @@ function register(req, res) {
 async function sendNotification(req, res) {
   try {
     // sample notification payload
-    const notificationPayload = {
+    const defaultPayload = {
       notification: {
         title: "Wavemaker notification",
-        icon: "https://xenodochial-nightingale-ed8ef6.netlify.app/ng-bundle/assets/icons/icon-72x72.png",
-        data: {
-          "onActionClick": {
-            "default": { "operation": "openWindow", "url": "https://xenodochial-nightingale-ed8ef6.netlify.app" }
-          }
-        },
+        icon: "/ng-bundle/assets/icons/icon-72x72.png",
       },
     };
-    await notificationSevice.sendNotification(req.body || notificationPayload, req);
-    res.status(200).json(notificationPayload);
+    const payload = req.body || defaultPayload;
+    await notificationSevice.sendNotification(payload, req);
+    res.status(200).json(payload);
   } catch (e) {
     res.sendStatus(500);
   }
